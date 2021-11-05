@@ -1,5 +1,6 @@
 import './App.scss';
 
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 import firebase from './firebase/config';
 
 function App() {
