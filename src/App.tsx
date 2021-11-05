@@ -3,7 +3,9 @@ import './App.css';
 function App() {
   return (
     <div className="App">
-      <h1>Firebase App</h1>
+      <div className="title-row">
+        <h1 className="title">Firebase Recipes</h1>
+      </div>
     </div>
   );
 }
