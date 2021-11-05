@@ -1,5 +1,7 @@
 import './App.scss';
 
+import firebase from './firebase/config';
+
 function App() {
   return (
     <div className="App">
