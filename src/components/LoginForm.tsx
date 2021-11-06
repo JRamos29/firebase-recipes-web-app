@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import FirebaseAuthService from '../firebase/authService';
+import FirebaseAuthService from '../backend/authService';
 
 interface LoginFormProps {
   existingUser: any;
