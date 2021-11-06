@@ -1,17 +1,19 @@
 import { useState } from 'react';
 import FirebaseAuthService from './firebase/authService';
+import LoginForm from './components/LoginForm';
+
 import './App.scss';
 
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-import firebase from './firebase/config';
-
 function App() {
-  const [user, setUse] = useState(null);
+  const [user, setUser] = useState(null);
+
+  FirebaseAuthService.subscribeToAuthChanges(setUser);
 
   return (
     <div className="App">
       <div className="title-row">
         <h1 className="title">Firebase Recipes</h1>
+        <LoginForm existingUser={user}></LoginForm>
       </div>
     </div>
   );

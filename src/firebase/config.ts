@@ -5,10 +5,12 @@ import firebase from 'firebase/compat/app';
 import 'firebase/compat/auth';
 import 'firebase/compat/firestore';
 import 'firebase/compat/storage';
+import { initializeApp } from 'firebase/app';
+import { getAuth } from 'firebase/auth';
 
 // Your web app's Firebase configuration
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional
-const firebaseConfig = {
+const config = {
   apiKey: process.env.REACT_APP_FIREBASE_API_KEY,
   authDomain: process.env.REACT_APP_FIREBASE_AUTH_DOMAIN,
   projectId: process.env.REACT_APP_FIREBASE_PROJECT_ID,
@@ -19,9 +21,23 @@ const firebaseConfig = {
 };
 
 // Initialize Firebase
-if (!firebase.apps.length) {
-  const app = firebase.initializeApp(firebaseConfig);
-  // const analytics = getAnalytics(app);
-}
+// if (!firebase.apps.length) {
 
-export default firebase;
+// Version 8
+// const classicFirebaseApp = firebase.initializeApp(config);
+// const auth = classicFirebaseApp.auth();
+// const firestore = classicFirebaseApp.firestore();
+// const storage = classicFirebaseApp.storage();
+// const analytics = getAnalytics(app);
+
+// Version 9
+const firebaseApp = initializeApp(config);
+const auth = getAuth(firebaseApp);
+
+// }
+
+const firebaseConfig = {
+  auth,
+};
+
+export default firebaseConfig;
