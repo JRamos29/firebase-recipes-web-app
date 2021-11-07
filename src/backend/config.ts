@@ -25,10 +25,10 @@ const config = {
 // if (!firebase.apps.length) {
 
 // Version 8
-const classicFirebaseApp = firebase.initializeApp(config);
-// const auth = classicFirebaseApp.auth();
-// const firestore = classicFirebaseApp.firestore();
-// const storage = classicFirebaseApp.storage();
+const firebaseV8 = firebase.initializeApp(config);
+// const auth = firebaseV8.auth();
+// const firestore = firebaseV8.firestore();
+// const storage = firebaseV8.storage();
 // const analytics = getAnalytics(app);
 
 // Version 9
@@ -39,6 +39,7 @@ const firestore = getFirestore(firebaseApp);
 // }
 
 const firebaseConfig = {
+  firebaseV8,
   auth,
   firestore,
 };
