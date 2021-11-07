@@ -1,8 +1,8 @@
 import firebase from './config';
 import {
   addDoc,
-  // doc,
-  // getDoc,
+  doc,
+  getDoc,
   collection as firestoreCollectionRef,
   // query,
   // where,
@@ -20,9 +20,9 @@ const createDocument = (collection, document) => {
   return addDoc(firestoreCollectionRef(firestore, collection), document);
 };
 
-// const readDocument = (collection, id) => {
-//   return getDoc(doc(firestoreCollectionRef(firestore, collection), id));
-// };
+const readDocument = (collection, id) => {
+  return getDoc(doc(firestoreCollectionRef(firestore, collection), id));
+};
 
 // const readDocuments = async ({
 //   collection,
@@ -45,6 +45,7 @@ const createDocument = (collection, document) => {
 
 const FirebaseFirestoreService = {
   createDocument,
+  readDocument,
 };
 
 export default FirebaseFirestoreService;
