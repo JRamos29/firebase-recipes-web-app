@@ -27,10 +27,10 @@ const readDocument = (collection, id) => {
 const readDocuments = async ({
   collection,
   queries,
-  // orderByField,
-  // orderByDirection,
-  // perPage,
-  // cursorId,
+  orderByField,
+  orderByDirection,
+  perPage,
+  cursorId,
 }) => {
   const collectionRef = firestoreCollectionRef(firestore, collection);
 
@@ -42,19 +42,19 @@ const readDocuments = async ({
     }
   }
 
-  // if (orderByField && orderByDirection) {
-  //   queryConstraints.push(orderBy(orderByField, orderByDirection));
-  // }
+  if (orderByField && orderByDirection) {
+    queryConstraints.push(orderBy(orderByField, orderByDirection));
+  }
 
-  // if (perPage) {
-  //   queryConstraints.push(limit(perPage));
-  // }
+  if (perPage) {
+    queryConstraints.push(limit(perPage));
+  }
 
-  // if (cursorId) {
-  //   const document = await readDocument(collection, cursorId);
+  if (cursorId) {
+    const document = await readDocument(collection, cursorId);
 
-  //   queryConstraints.push(startAfter(document));
-  // }
+    queryConstraints.push(startAfter(document));
+  }
 
   const firestoreQuery = query(collectionRef, ...queryConstraints);
 
