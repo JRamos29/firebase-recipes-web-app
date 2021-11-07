@@ -162,11 +162,11 @@ function App() {
   }
 
   async function handleDeleteRecipe(recipeId) {
-    const deleteConfirmtion = window.confirm(
+    const deleteConfirmation = window.confirm(
       'Are you sure you want to delete this recipe? OK for Yes. Cancel for No.',
     );
 
-    if (deleteConfirmtion) {
+    if (deleteConfirmation) {
       try {
         await FirebaseFirestoreService.deleteDocument('recipes', recipeId);
 
