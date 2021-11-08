@@ -42,7 +42,7 @@ exports.onCreateRecipe = functions.firestore
   });
 
 exports.onDeleteRecipe = functions.firestore
-  .document('recipe/{recipeId}')
+  .document('recipes/{recipeId}')
   .onDelete(async (snapshot) => {
     const recipe = snapshot.data();
     const imageUrl = recipe.imageUrl;
