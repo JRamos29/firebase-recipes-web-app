@@ -8,6 +8,7 @@ import 'firebase/compat/storage';
 import { initializeApp } from 'firebase/app';
 import { getAuth } from 'firebase/auth';
 import { getFirestore } from 'firebase/firestore';
+import { getStorage } from 'firebase/storage';
 
 // Your web app's Firebase configuration
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional
@@ -25,7 +26,7 @@ const config = {
 // if (!firebase.apps.length) {
 
 // Version 8
-const firebaseV8 = firebase.initializeApp(config);
+// const firebaseV8 = firebase.initializeApp(config);
 // const auth = firebaseV8.auth();
 // const firestore = firebaseV8.firestore();
 // const storage = firebaseV8.storage();
@@ -35,13 +36,15 @@ const firebaseV8 = firebase.initializeApp(config);
 const firebaseApp = initializeApp(config);
 const auth = getAuth(firebaseApp);
 const firestore = getFirestore(firebaseApp);
+const storage = getStorage(firebaseApp);
 
 // }
 
 const firebaseConfig = {
-  firebaseV8,
+  // firebaseV8,
   auth,
   firestore,
+  storage,
 };
 
 export default firebaseConfig;
