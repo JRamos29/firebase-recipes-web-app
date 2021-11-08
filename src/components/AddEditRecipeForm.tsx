@@ -116,13 +116,13 @@ function AddEditRecipeForm({
             >
               <option value=""></option>
               <option value="breadsSandwichesAndPizza">
-                Breads, Sandwiches and Pizza
+                Breads, Sandwiches, and Pizza
               </option>
-              <option value="eggsAndBreakfast">Eggs and Breakfast</option>
+              <option value="eggsAndBreakfast">Eggs & Breakfast</option>
               <option value="dessertsAndBakedGoods">
-                Desserts and BakedGoods
+                Desserts & Baked Goods
               </option>
-              <option value="fishAndSeafood">Fish and Seafood</option>
+              <option value="fishAndSeafood">Fish & Seafood</option>
               <option value="vegetables">Vegetables</option>
             </select>
           </label>
