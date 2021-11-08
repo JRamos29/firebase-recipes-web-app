@@ -10,12 +10,12 @@ const apiFirebaseOptions = {
 
 admin.initializeApp(apiFirebaseOptions);
 
-const firestore = admin.firestore;
-const settings = {
+const firestore = admin.firestore();
+const firestoreSettings = {
   timestampsInSnapshots: true,
 };
 
-firestore.settings(settings);
+firestore.settings(firestoreSettings);
 
 const storageBucket = admin.storage().bucket(FIREBASE_STORAGE_BUCKET);
 const auth = admin.auth();
