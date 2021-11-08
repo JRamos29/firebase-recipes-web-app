@@ -40,3 +40,59 @@ exports.onCreateRecipe = functions.firestore
       }
     }
   });
+
+exports.onDeleteRecipe = functions.firestore
+  .document('recipe/{recipeId}')
+  .onDelete(async (snapshot) => {
+    const recipe = snapshot.data();
+    const imageUrl = recipe.imageUrl;
+
+    if (imageUrl) {
+      const decodeUrl = decodeURIComponent(imageUrl);
+      const startIndex = decodeUrl.indexOf('/o/') + 3;
+      const endIndex = decodeUrl.indexOf('?');
+      const fullFilePath = decodeUrl.substring(startIndex, endIndex);
+      const file = storageBucket.file(fullFilePath);
+
+      console.log(`Attempting to delete: ${fullFilePath}`);
+
+      try {
+        await file.delete();
+        console.log('Successfully deleted image.');
+      } catch (error) {
+        console.log(`Failed to delete file: ${error.message}`);
+      }
+
+      const countDocRef = firestore.collection('recipeCounts').doc('all');
+      const countDoc = await countDocRef.get();
+
+      if (countDoc.exists) {
+        countDocRef.update({
+          count: admin.firestore.FieldValue.increment(-1),
+        });
+      } else {
+        countDocRef.set({
+          count: 0,
+        });
+      }
+
+      // const recipe = snapshot.data();
+
+      if (recipe.isPublished) {
+        const countPublishedDocRef = firestore
+          .collection('recipeCounts')
+          .doc('published');
+        const countPublishedDoc = await countPublishedDocRef.get();
+
+        if (countPublishedDoc.exists) {
+          countPublishedDocRef.update({
+            count: admin.firestore.FieldValue.increment(-1),
+          });
+        } else {
+          countPublishedDocRef.set({
+            count: 0,
+          });
+        }
+      }
+    }
+  });
