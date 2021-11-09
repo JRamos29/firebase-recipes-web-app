@@ -44,7 +44,7 @@ const FirebaseAuthService = {
   loginUser,
   logoutUser,
   sendPasswordResetEmail: (email) => {
-    sendPasswordResetEmail(auth, email);
+    return sendPasswordResetEmail(auth, email);
   },
   loginWithGoogle,
   subscribeToAuthChanges,
