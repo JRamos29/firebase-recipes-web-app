@@ -41,6 +41,45 @@ exports.onCreateRecipe = functions.firestore
     }
   });
 
+exports.onUpdateRecipe = functions.firestore
+  .document('recipes/{recipeId}')
+  .onUpdate(async (changes) => {
+    const oldRecipe = changes.before.data();
+    const newRecipe = changes.after.data();
+
+    let publishCount = 0;
+
+    if (!oldRecipe.isPublished && newRecipe.isPublished) {
+      publishCount += 1;
+    } else if (oldRecipe.isPublished && !newRecipe.isPublished) {
+      publishCount -= 1;
+    }
+
+    if (publishCount !== 0) {
+      const publishedCountDocRef = firestore
+        .collection('recipeCounts')
+        .doc('published');
+
+      const publishedCountDoc = await publishedCountDocRef.get();
+
+      if (publishedCountDoc.exists) {
+        publishedCountDocRef.update({
+          count: admin.firestore.FieldValue.increment(publishCount),
+        });
+      } else {
+        if (publishCount > 0) {
+          publishedCountDocRef.set({
+            count: publishCount,
+          });
+        } else {
+          publishedCountDocRef.set({
+            count: 0,
+          });
+        }
+      }
+    }
+  });
+
 exports.onDeleteRecipe = functions.firestore
   .document('recipes/{recipeId}')
   .onDelete(async (snapshot) => {
@@ -97,41 +136,42 @@ exports.onDeleteRecipe = functions.firestore
     }
   });
 
-exports.onUpdateRecipe = functions.firestore
-  .document('recipes/{recipeId}')
-  .onUpdate(async (changes) => {
-    const oldRecipe = changes.before.data();
-    const newRecipe = changes.after.data();
+// https://crontab.guru/
 
-    let publishCount = 0;
+const runtimeOptions = {
+  timeoutSeconds: 300,
+  memory: '256MB',
+};
 
-    if (!oldRecipe.isPublished && newRecipe.isPublished) {
-      publishCount += 1;
-    } else if (oldRecipe.isPublished && !newRecipe.isPublished) {
-      publishCount -= 1;
-    }
+exports.dailyCheckRecipePublishDate = functions
+  .runWith(runtimeOptions)
+  .pubsub.schedule('0 0 * * *')
+  .onRun(async () => {
+    console.log('dailyCheckRecipePublishDate() called - time to check');
 
-    if (publishCount !== 0) {
-      const publishedCountDocRef = firestore
-        .collection('recipeCounts')
-        .doc('published');
+    const snapshot = await firestore
+      .collection('recipes')
+      .where('isPublished', '==', false)
+      .get();
 
-      const publishedCountDoc = await publishedCountDocRef.get();
+    snapshot.forEach(async (doc) => {
+      const data = doc.data();
+      const now = Date.now() / 1000;
+      const isPublished = data.publishDate._seconds <= now ? true : false;
 
-      if (publishedCountDoc.exists) {
-        publishedCountDocRef.update({
-          count: admin.firestore.FieldValue.increment(publishCount),
-        });
-      } else {
-        if (publishCount > 0) {
-          publishedCountDocRef.set({
-            count: publishCount,
-          });
-        } else {
-          publishedCountDocRef.set({
-            count: 0,
-          });
-        }
+      if (isPublished) {
+        console.log(`Recipe: ${data.name} is now published!`);
+
+        firestore.collection('recipes').doc(doc.id).set(
+          {
+            isPublished,
+          },
+          {
+            merge: true,
+          },
+        );
       }
-    }
+    });
   });
+
+console.log('SERVER STARTED!');
