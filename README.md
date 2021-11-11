@@ -4,7 +4,7 @@
 <br />
 
 ### The application is developed based on react components including some features as:
-<br />
+
 
 ### - [Firebase Hosting](https://firebase.google.com/docs/hosting)
 
@@ -53,7 +53,7 @@
 - Firebase Service JavaScript file for REST API backend;
 <br />
 <hr />
-<br />
+
 
 ### In the project directory, you can run:
 <br />
