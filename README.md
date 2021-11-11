@@ -1,70 +1,74 @@
-# Getting Started with Create React App
+# Firebase Recipes Web App with React and Typescript
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## This is a web app that implements some core functionalities from the Firebase Cloud Services such as Hosting, Authentication, Firestore, Storage and Functions.
 
-## Available Scripts
+<br />
 
-In the project directory, you can run:
+### The application is developed based on react components including some features as:
 
-### `yarn start`
+<br />
+
+### - [Firebase Hosting](https://firebase.google.com/docs/hosting)
+
+- Build & deploy secure HTTPS production web app to Firebase Hosting;
+- Setup continuous deployment with [Github Actions](https://docs.github.com/en/actions);
+- Manually deploy to Firebase Hosting;
+
+<br />
+
+### - [Firebase Authentication](https://firebase.google.com/docs/auth)
+
+- Firebase Auth JavaScript Service File;
+- Register User Accounts;
+- Login/Logout User Accounts;
+- Detect Auth Changes for Auto-Reload User Auth local state;
+- Reset User Password;
+- Login with 0Auth 2 (Google);
+- React Login Component;
+
+<br />
+
+### - [Firebase Firestore](https://firebase.google.com/docs/firestore)
+
+- Firebase Firestore JavaScript Service File;
+- Configure Firestore Security Rules with Firebase Auth & Input Validation & Sanitization;
+- React components for both admin and anonymous user filter, sort, limit, and pagination displayed recipes, create new recipes, update/delete existing recipes;
+- Perform all 4 CRUD (create, read update, delete) Operations with Firestore;
+- Queries to select recipes by category or publish date, limit the number of results per page, and loading additional recipes with cursor pagination;
+
+<br />
+
+### - [Firebase Storage](https://firebase.google.com/docs/storage)
+
+- Create Firebase Storage JavaScript Service File to Upload & Delete Files;
+- Configure Storage Security Rules with Firebase Auth;
+- Image Uploader & Preview Read component;
+
+<br />
+
+### - [Firebase Functions](https://firebase.google.com/docs/functions)
+
+- Create/Test Firebase Functions for faster development;
+- Deploy Firebase Functions to the Cloud;
+- Scheduled Functions (cronjobs);
+- Firestore Triggered Functions;
+- Full RESTful CRUD API with [Express](http://expressjs.com/);
+- Verify Auth Token;
+- Validate/Sanitize Requests;
+- Full pagination;
+- Firebase Service JavaScript file for REST API backend;
+
+<br />
+<hr />
+<br />
+
+### In the project directory, you can run:
+<br />
+
+`npm start`  or   `yarn start`
 
 Runs the app in the development mode.\
 Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
-
-### `yarn test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `yarn build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `yarn eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `yarn build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+<br />
+<hr />
